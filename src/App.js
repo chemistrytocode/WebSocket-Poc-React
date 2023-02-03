@@ -1,7 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import quoteWebsocket from './WebSockets/WebSocket';
+import { useEffect } from "react";
+
 
 function App() {
+  useEffect(() => {
+    quoteWebsocket.start();
+  }, []);
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +25,10 @@ function App() {
         >
           Learn React
         </a>
+        <div>Huh</div>
+        <button onClick={quoteWebsocket.start}>Connect</button>
+        <button onClick={quoteWebsocket.callQuoting}>Send Request</button>
+        <div id="messageList"></div>
       </header>
     </div>
   );
